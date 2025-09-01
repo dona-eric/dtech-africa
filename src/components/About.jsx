@@ -12,8 +12,7 @@ export default function About(){
   return (
     <section id="about" className="container mx-auto px-6 py-16">
       <div className="max-w-4xl mx-auto text-center">
-        <h2 className="text-2xl font-bold">À propos de DTech Africa</h2>
-        <p className="mt-4 text-slate-700">Chez DTech Africa, nous créons des solutions digitales innovantes pour accompagner entreprises, étudiants et institutions. Nos domaines d’expertise couvrent le développement web, la data science et l’intelligence artificielle. En parallèle, nous formons et mentorons la prochaine génération de talents africains du numérique.</p>
+        <p className="mt-4 text-slate-700">Chez DTECH-Africa, nous créons des solutions digitales innovantes pour accompagner entreprises, étudiants et institutions. Nos domaines d’expertise couvrent le développement web, la data science et l’intelligence artificielle. En parallèle, nous formons et mentorons la prochaine génération de talents africains du numérique.</p>
       </div>
 
       <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

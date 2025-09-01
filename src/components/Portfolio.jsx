@@ -1,32 +1,96 @@
-import React from 'react'
+import React, { useState } from 'react'
+import { TypeAnimation } from "react-type-animation";
+import { motion } from 'framer-motion'
+import Lightbox from 'react-image-lightbox'
+import 'react-image-lightbox/style.css'
+import { api } from "../api/api";
 
-const Project = ({img, title, desc}) => (
-  <div className="bg-white rounded-lg shadow overflow-hidden">
-    <img src={img} alt={title} className="w-full h-40 object-cover" />
-    <div className="p-4">
-      <h4 className="font-semibold">{title}</h4>
-      <p className="mt-2 text-sm text-slate-600">{desc}</p>
-    </div>
-  </div>
-)
+const categories = ['Tous', 'Web', 'Data & IA', 'Mobile']
 
-export default function Portfolio(){
-  const projects = [
-    {img:'/portfolio-ecommerce.jpg', title:'E-commerce pour PME', desc:'Site e-commerce et intégration paiement.'},
-    {img:'/portfolio-dashboard.jpg', title:'Dashboard data', desc:'Tableau de bord interactif pour prise de décision.'},
-    {img:'/portfolio-chatbot.jpg', title:'Chatbot éducatif', desc:'Assistant IA pour supports pédagogiques.'}
-  ]
+const allProjects = [
+  {img:'/portfolio-ecommerce.jpg', title:'E-commerce pour PME', desc:'Site e-commerce et intégration paiement.', category:'Web'},
+  {img:'/portfolio-dashboard.jpg', title:'Dashboard data', desc:'Tableau de bord interactif pour prise de décision.', category:'Data & IA'},
+  {img:'/portfolio-chatbot.jpg', title:'Chatbot éducatif', desc:'Assistant IA pour supports pédagogiques.', category:'IA'},
+  {img:'/portfolio-ml.jpg', title:'Projet Machine Learning', desc:'Prédictions et analyses avancées.', category:'Data & IA'},
+  {img:'/portfolio-webapp.jpg', title:'Application Web sur-mesure', desc:'Solution complète pour startup.', category:'Web'},
+  {img:'/portfolio-mobileapp.jpg', title:'Application Mobile', desc:'App Android & iOS pour gestion clients.', category:'Mobile'},
+]
+
+export default function Portfolio() {
+  const [filter, setFilter] = useState('Tous')
+  const [lightboxOpen, setLightboxOpen] = useState(false)
+  const [currentImage, setCurrentImage] = useState(0)
+
+  const filteredProjects = filter === 'Tous' ? allProjects : allProjects.filter(p => p.category === filter)
+
+  const openLightbox = index => {
+    setCurrentImage(index)
+    setLightboxOpen(true)
+  }
 
   return (
     <section id="portfolio" className="container mx-auto px-6 py-16">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold">Nos réalisations</h2>
-        <p className="mt-2 text-slate-600">Quelques projets pour illustrer notre savoir-faire.</p>
+      <div className="text-center mb-12">
+        <h2 className="text-3xl font-bold">Nos réalisations</h2>
+        <p className="mt-2 text-slate-600">Découvrez nos projets et notre savoir-faire par catégorie.</p>
+
+        {/* Filtres */}
+        <div className="mt-6 flex justify-center gap-4 flex-wrap">
+          {categories.map(c => (
+            <button
+              key={c}
+              onClick={() => setFilter(c)}
+              className={`px-4 py-2 rounded-full font-semibold transition ${
+                filter === c ? 'bg-sky-600 text-white' : 'bg-slate-200 text-slate-700'
+              }`}
+            >
+              {c}
+            </button>
+          ))}
+        </div>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
-        {projects.map(p => <Project key={p.title} {...p} />)}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+        {filteredProjects.map((p, i) => (
+          <motion.div
+            key={i}
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6, delay: i * 0.1 }}
+            className="cursor-pointer"
+            onClick={() => openLightbox(i)}
+          >
+            <div className="bg-white rounded-lg shadow overflow-hidden relative hover:shadow-lg transition-transform transform hover:scale-105">
+              <img src={p.img} alt={p.title} className="w-full h-48 object-cover" />
+              <div className="p-4">
+                <h4 className="font-semibold text-lg">{p.title}</h4>
+                <p className="mt-2 text-sm text-slate-600">{p.desc}</p>
+              </div>
+              <div className="absolute inset-0 flex items-center justify-center opacity-0 hover:opacity-100 transition bg-black bg-opacity-25">
+                <span className="text-white font-semibold px-4 py-2 bg-sky-600 rounded-lg">Voir projet</span>
+              </div>
+            </div>
+          </motion.div>
+        ))}
       </div>
+
+      {lightboxOpen && (
+        <Lightbox
+          mainSrc={filteredProjects[currentImage].img}
+          onCloseRequest={() => setLightboxOpen(false)}
+          imageTitle={filteredProjects[currentImage].title}
+          imageCaption={filteredProjects[currentImage].desc}
+          nextSrc={filteredProjects[(currentImage + 1) % filteredProjects.length].img}
+          prevSrc={filteredProjects[(currentImage + filteredProjects.length - 1) % filteredProjects.length].img}
+          onMovePrevRequest={() =>
+            setCurrentImage((currentImage + filteredProjects.length - 1) % filteredProjects.length)
+          }
+          onMoveNextRequest={() =>
+            setCurrentImage((currentImage + 1) % filteredProjects.length)
+          }
+        />
+      )}
     </section>
   )
 }

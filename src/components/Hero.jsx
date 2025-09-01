@@ -1,29 +1,86 @@
-import React from 'react'
-import { motion } from 'framer-motion'
+import React from "react";
+import { motion } from "framer-motion";
+import { TypeAnimation } from "react-type-animation";
+import heroImage from "../assets/dtech.png"; // ton image ou illustration
 
-export default function Hero(){
+export default function Hero() {
   return (
-    <section className="bg-gradient-to-b from-white to-sky-50 py-20">
-      <div className="container mx-auto px-6 flex flex-col md:flex-row items-center gap-12">
-        <div className="flex-1">
-          <motion.h1 initial={{opacity:0, y:8}} animate={{opacity:1, y:0}} transition={{duration:0.6}} className="text-3xl sm:text-5xl font-extrabold">
-            DTech Africa — Votre partenaire digital pour le développement web, la data et l’IA.
-          </motion.h1>
-          <p className="mt-6 text-lg text-slate-700">Nous concevons des solutions numériques et formons la prochaine génération de talents africains en tech.</p>
+    <section className="relative overflow-hidden">
+      {/* Background animé */}
+      <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 animate-gradientBackground opacity-40 -z-10"></div>
 
-          <div className="mt-8 flex flex-col sm:flex-row gap-4">
-            <a href="#services" className="btn-primary">Découvrez nos services</a>
-            <a href="#formations" className="btn-ghost">Rejoignez une formation</a>
+      <div className="container mx-auto px-6 py-24 flex flex-col-reverse md:flex-row items-center gap-12 relative z-10">
+        
+        {/* Texte + CTA */}
+        <motion.div
+          className="flex-1 text-center md:text-left"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+            Transformez votre avenir avec{" "}
+            <span className="text-indigo-600">
+              <TypeAnimation
+                sequence={["le numérique", 2000, "la Data", 2000, "l'IA", 2000]}
+                wrapper="span"
+                repeat={Infinity}
+              />
+            </span>
+          </h1>
+          <p className="text-slate-700 mb-8 max-w-xl mx-auto md:mx-0">
+            Chez DTech-Africa, nous créons des solutions digitales et formons la nouvelle génération de talents pour réussir dans le monde numérique.
+          </p>
+
+          <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
+            <motion.a
+              href="#trainings"
+              className="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-300"
+              whileHover={{ scale: 1.05 }}
+            >
+              Découvrir nos formations
+            </motion.a>
+            <motion.a
+              href="#contact"
+              className="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-transform duration-300"
+              whileHover={{ scale: 1.05 }}
+            >
+              Nous contacter
+            </motion.a>
           </div>
-        </div>
+        </motion.div>
 
-        <div className="flex-1">
-          <motion.div initial={{opacity:0, scale:0.98}} animate={{opacity:1, scale:1}} transition={{duration:0.6}} className="w-full bg-white rounded-xl shadow-lg p-6">
-            <img src="/dtech.png" onError={(e)=>{e.target.src='/hero-team.jpg'}} alt="DTech" className="w-full h-64 object-contain rounded-md" />
-            <p className="mt-3 text-sm text-slate-500">Travail en équipe, innovation et apprentissage pratique.</p>
-          </motion.div>
-        </div>
+        {/* Image flottante */}
+     
+        <motion.div
+          className="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden shadow-2xl"
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 1 }}
+          whileHover={{ scale: 1.05 }}
+        >
+          <img
+            src={heroImage}
+            alt="Illustration DTech Africa"
+            className="w-full h-full object-cover object-center transform hover:scale-105 transition duration-500"
+          />
+        </motion.div>
       </div>
+
+      {/* Background gradient animation CSS */}
+      <style>
+        {`
+          @keyframes gradientBackground {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .animate-gradientBackground {
+            background-size: 400% 400%;
+            animation: gradientBackground 15s ease infinite;
+          }
+        `}
+      </style>
     </section>
-  )
+  );
 }

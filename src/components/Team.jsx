@@ -1,34 +1,78 @@
-import React from 'react'
+import React from "react";
+import { motion } from "framer-motion";
+import { Linkedin, Github } from "lucide-react";
 
-const Member = ({img, name, role, bio}) => (
-  <div className="bg-white p-4 rounded-lg shadow-sm text-center">
-    <img src={img} alt={name} className="w-24 h-24 rounded-full mx-auto object-cover" />
-    <h4 className="mt-3 font-semibold">{name}</h4>
+const Member = ({ img, name, role, bio, linkedin, github }) => (
+  <motion.div
+    className="bg-white p-6 rounded-2xl shadow-lg text-center hover:shadow-2xl transition-transform hover:scale-105"
+    whileHover={{ scale: 1.05 }}
+  >
+    <img
+      src={img}
+      alt={name}
+      className="w-28 h-28 rounded-full mx-auto object-cover border-2 border-sky-500"
+    />
+    <h4 className="mt-4 font-semibold text-lg">{name}</h4>
     <p className="text-sm text-slate-600">{role}</p>
     <p className="mt-2 text-xs text-slate-500">{bio}</p>
-    <div className="mt-3 flex justify-center gap-3 text-sky-600">
-      <a href="#">LinkedIn</a>
-      <a href="#">GitHub</a>
+    <div className="mt-3 flex justify-center gap-4 text-sky-600">
+      {linkedin && (
+        <a href={linkedin} target="_blank" rel="noopener noreferrer">
+          <Linkedin size={20} className="hover:text-blue-700 transition" />
+        </a>
+      )}
+      {github && (
+        <a href={github} target="_blank" rel="noopener noreferrer">
+          <Github size={20} className="hover:text-gray-800 transition" />
+        </a>
+      )}
     </div>
-  </div>
-)
+  </motion.div>
+);
 
-export default function Team(){
+export default function Team() {
   const members = [
-    {img:'/team-aminata.jpg', name:'Aminata Diop', role:'Formatrice Data Science', bio:'Experte en IA appliquée au secteur de la santé. +10 ans d’expérience.'},
-    {img:'/team-erick.jpg', name:'Erick Schrödinger', role:'Mentor Machine Learning', bio:'Spécialiste en ML, IA et cloud. Accompagnement de startups africaines.'}
-  ]
+    {
+      img: "../assets/team-eric.jpg",
+      name: "Eric KOULODJI",
+      role: "Data Scientist & Ingénieur Machine Learning",
+      bio: "Passionné par la science des données et l'intelligence artificielle, il mets ses compétences aux services des afriques et de toute l'humanité",
+      linkedin: "Dona Eric KOULODJI",
+      github: "@dona-eric",
+    },
+    {
+      img: "../assets/team-raymond.jpg",
+      name: "Raymond A. ODOUNHITAN",
+      role: "Formateur, Developpeur Web Full-Stack",
+      bio: "Spécialiste en Developpement Web, cloud et DevOps Accompagnement de startups africaines.",
+      linkedin: "#",
+      github: "#",
+    },
+  ];
 
   return (
     <section id="team" className="container mx-auto px-6 py-16">
-      <div className="text-center mb-8">
-        <h2 className="text-2xl font-bold">Nos formateurs & mentors</h2>
-        <p className="mt-2 text-slate-600">Une équipe d'experts engagés pour votre réussite.</p>
+      <div className="text-center mb-12">
+        <h2 className="text-3xl md:text-4xl font-bold">Nos formateurs & mentors</h2>
+        <p className="mt-2 text-slate-600 max-w-2xl mx-auto">
+          Une équipe d'experts engagés pour votre réussite.
+        </p>
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 max-w-4xl mx-auto">
-        {members.map(m => <Member key={m.name} {...m} />)}
-      </div>
+      <motion.div
+        className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-5xl mx-auto"
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true }}
+        variants={{
+          hidden: {},
+          visible: { transition: { staggerChildren: 0.2 } },
+        }}
+      >
+        {members.map((m) => (
+          <Member key={m.name} {...m} />
+        ))}
+      </motion.div>
     </section>
-  )
+  );
 }
