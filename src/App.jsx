@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import { Routes, Route, Link } from 'react-router-dom'
 import Home from './pages/Home'
 import About from './pages/About'
@@ -9,17 +9,40 @@ import Contact from './pages/Contact'
 import Signup from './pages/Signup'
 
 function Nav() {
+  const [open, setOpen] = useState(false)
   return (
-    <nav className="bg-sky-900 text-white p-4">
-      <div className="container mx-auto flex gap-4">
-        <Link to="/" className="font-bold">DTech-Africa</Link>
-        <Link to="/about">À propos</Link>
-        <Link to="/services">Services</Link>
-        <Link to="/projects">Projets</Link>
-        <Link to="/blog">Blog</Link>
-        <Link to="/contact">Contact</Link>
-        <Link to="/signup" className="ml-auto bg-orange-500 px-3 py-1 rounded">Rejoindre</Link>
+    <nav className="bg-white border-b">
+      <div className="container mx-auto p-4 flex items-center justify-between">
+        <div className="flex items-center gap-4">
+          <Link to="/" className="flex items-center gap-3">
+            <img src="/dtech-africa-logo.png" alt="DTech-Africa" className="site-logo" />
+            <span className="font-semibold text-slate-800">DTech-Africa</span>
+          </Link>
+        </div>
+
+        <button className="sm:hidden" onClick={()=>setOpen(!open)} aria-label="menu">
+          <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={open?"M6 18L18 6M6 6l12 12":"M4 6h16M4 12h16M4 18h16"} /></svg>
+        </button>
+
+        <div className={`hidden sm:flex sm:items-center sm:gap-6 ${open? 'block': ''}`}> 
+          <Link to="/about" className="text-slate-700">À propos</Link>
+          <Link to="/services" className="text-slate-700">Services</Link>
+          <Link to="/projects" className="text-slate-700">Projets</Link>
+          <Link to="/blog" className="text-slate-700">Blog</Link>
+          <Link to="/contact" className="text-slate-700">Contact</Link>
+          <Link to="/signup" className="ml-2 btn-primary">Rejoindre</Link>
+        </div>
       </div>
+      {open && (
+        <div className="sm:hidden bg-sky-900 px-4 pb-4">
+          <Link to="/about" className="block py-2">À propos</Link>
+          <Link to="/services" className="block py-2">Services</Link>
+          <Link to="/projects" className="block py-2">Projets</Link>
+          <Link to="/blog" className="block py-2">Blog</Link>
+          <Link to="/contact" className="block py-2">Contact</Link>
+          <Link to="/signup" className="block py-2">Rejoindre</Link>
+        </div>
+      )}
     </nav>
   )
 }

@@ -1,15 +1,14 @@
 import React from 'react'
+import ServicesSection from '../components/Services'
 
 export default function Services(){
   return (
-    <div>
-      <h2 className="text-2xl font-semibold">Services / Formations</h2>
-      <ul className="mt-4 list-disc ml-6">
-        <li>Data Science</li>
-        <li>Machine Learning</li>
-        <li>Intelligence Artificielle</li>
-        <li>Transformation digitale</li>
-      </ul>
+    <div className="container mx-auto px-6 py-8">
+      <header className="mb-6">
+        <h2 className="text-3xl font-bold">Nos services</h2>
+        <p className="text-slate-600 mt-2">Découvrez nos offres pour entreprises et apprenants.</p>
+      </header>
+      <ServicesSection />
     </div>
   )
 }
