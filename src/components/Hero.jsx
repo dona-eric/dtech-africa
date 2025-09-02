@@ -18,9 +18,9 @@ export default function Hero() {
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-900 mb-4">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-600 mb-4">
             Transformez votre avenir avec{" "}
-            <span className="text-indigo-600">
+            <span className="text-indigo-200">
               <TypeAnimation
                 sequence={["le numérique", 2000, "la Data", 2000, "l'IA", 2000]}
                 wrapper="span"
@@ -28,7 +28,7 @@ export default function Hero() {
               />
             </span>
           </h1>
-          <p className="text-slate-700 mb-8 max-w-xl mx-auto md:mx-0">
+          <p className="text-slate-500 mb-8 max-w-xl mx-auto md:mx-0">
             Chez DTech-Africa, nous créons des solutions digitales et formons la nouvelle génération de talents pour réussir dans le monde numérique.
           </p>
 
@@ -61,8 +61,8 @@ export default function Hero() {
         >
           <img
             src={heroImage}
-            alt="Illustration DTech Africa"
-            className="w-full h-full object-cover object-center transform hover:scale-105 transition duration-500"
+            alt="DTech Africa"
+            className="w-50 h-45 rounded-full object-cover object-center transform hover:scale-105 transition duration-500"
           />
         </motion.div>
       </div>

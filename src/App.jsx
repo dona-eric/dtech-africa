@@ -2,7 +2,7 @@ import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
 import { motion } from 'framer-motion'
 import { Sun, Moon, Linkedin, Twitter, Mail } from 'lucide-react'
-
+import logo from "./assets/logo.png";
 // Lazy loading pages
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
@@ -45,7 +45,7 @@ function Nav() {
       <div className="container mx-auto flex items-center justify-between p-4">
         {/* Logo animé */}
         <Link to="/" className="flex items-center gap-3">
-          <img src="/dtech-africa-logo.png" alt="DTech-Africa" className="w-10 h-10"/>
+          <img src={logo} alt="DTech-Africa" className="w-10 h-10 rounded-full object-cover shadow-2xl border-2 border-gradient-to-r from-orange-50 via-pink-200 to-purple-600 "/>
           <span className="font-bold text-xl bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-transparent bg-clip-text animate-gradient-x">
             DTech-Africa
           </span>
@@ -121,8 +121,8 @@ function Footer() {
         <p>© Copyright 2025 Dtech-africa. Tous droits réservés.</p>
         <div className="flex gap-4">
           <a href="#" aria-label="LinkedIn"><Linkedin size={20}/></a>
-          <a href="#" aria-label="Twitter"><Twitter size={20}/></a>
-          <a href="#" aria-label="Email"><Mail size={20}/></a>
+          <a href="https://x.com/dtech" aria-label="Twitter"><Twitter size={20}/></a>
+          <a href="mailto:dtech.afrik@gmail.com" aria-label="Email"><Mail size={20}/></a>
         </div>
         <form className="flex gap-2">
           <input type="email" placeholder="Votre email" className="px-3 py-1 rounded text-black"/>

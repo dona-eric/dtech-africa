@@ -14,7 +14,7 @@ export default function About() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
         >
-          À propos de <span>DTech Africa</span>
+          À propos de <span>DTech-Africa</span>
         </motion.h2>
         <p className="text-slate-600 dark:text-slate-300 mt-3 max-w-2xl mx-auto text-lg">
           Nous créons des solutions digitales innovantes pour accompagner les entreprises et former la nouvelle génération de talents en Afrique.
