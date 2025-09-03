@@ -1,0 +1,11 @@
+import{r as a,R as e}from"./index-DGTdK_jE.js";import{a as o}from"./api-BHyjfXVB.js";function x(){const[l,s]=a.useState([]),[n,i]=a.useState(!0),[r,c]=a.useState(null);return a.useEffect(()=>{o.getArticles().then(t=>s(t)).catch(t=>c(t.message)).finally(()=>i(!1))},[]),n?e.createElement("div",{className:"text-center py-10"},"Chargement..."):r?e.createElement("div",{className:"text-red-500 text-center py-10"},r):e.createElement("div",{className:"container mx-auto px-6 py-12"},e.createElement("header",{className:"mb-10 text-center"},e.createElement("h2",{className:"text-4xl font-bold text-transparent bg-clip-text bg-gradient-to-r from-pink-500 via-purple-500 to-sky-500 animate-gradient-x"},"Blog & Actualités"),e.createElement("p",{className:"text-slate-600 mt-2 text-lg"},"Articles, annonces de cohortes et tutoriels.")),e.createElement("div",{className:"grid md:grid-cols-2 lg:grid-cols-3 gap-8"},l.map(t=>e.createElement("article",{key:t.id,className:"bg-white dark:bg-slate-800 rounded-2xl shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 p-5 flex flex-col"},t.image&&e.createElement("img",{src:t.image,alt:t.title,className:"rounded-xl mb-4 w-full h-48 object-cover"}),e.createElement("h3",{className:"font-semibold text-lg text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-pink-500"},t.title),e.createElement("p",{className:"text-sm text-slate-600 dark:text-slate-300 mt-2 flex-1"},t.excerpt),e.createElement("div",{className:"mt-4 flex justify-between items-center"},e.createElement("span",{className:"text-xs text-slate-400 dark:text-slate-500"},new Date(t.created_at).toLocaleDateString()),e.createElement("a",{href:`/blog/${t.id}`,className:"px-3 py-1 bg-gradient-to-r from-pink-500 via-purple-500 to-sky-500 text-white text-xs rounded hover:opacity-90 transition"},"Lire la suite"))))),e.createElement("style",null,`
+          @keyframes gradient-x {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+          }
+          .animate-gradient-x {
+            background-size: 200% 200%;
+            animation: gradient-x 4s ease infinite;
+          }
+        `))}export{x as default};
