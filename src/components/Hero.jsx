@@ -19,17 +19,19 @@ export default function Hero() {
           transition={{ duration: 0.8 }}
         >
           <h1 className="text-4xl md:text-5xl font-bold text-slate-600 mb-4">
-            Transformez votre avenir avec{" "}
+            Transformez vos idées{" "}
             <span className="text-indigo-200">
               <TypeAnimation
-                sequence={["le numérique", 2000, "la Data", 2000, "l'IA", 2000]}
+                sequence={["en solution digitales concrètes", 2000, ",devenez un acteur de référence en innovation digitale", 2000, "et accompagner l'Afrique vers l'innovation numérique.", 2000]}
                 wrapper="span"
                 repeat={Infinity}
               />
             </span>
           </h1>
           <p className="text-slate-500 mb-8 max-w-xl mx-auto md:mx-0">
-            Chez DTech-Africa, nous créons des solutions digitales et formons la nouvelle génération de talents pour réussir dans le monde numérique.
+            Chez DTech-Africa, chaque idée devient technologie, chaque talent devient expert,
+            et chaque projet change le futur digital de l'Afrique.
+            Nous innovons,formons,transformons, nous donnons vie à vos idées et préparons l'Afrique au numérique de demain.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">

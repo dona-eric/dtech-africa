@@ -1,6 +1,6 @@
 import React from "react"
 import { motion } from "framer-motion"
-import { Users, Target, Heart } from "lucide-react"
+import { Users, Target, Heart, Goal } from "lucide-react"
 import AboutSection from "../components/About"
 
 export default function About() {
@@ -17,7 +17,8 @@ export default function About() {
           À propos de <span>DTech-Africa</span>
         </motion.h2>
         <p className="text-slate-600 dark:text-slate-300 mt-3 max-w-2xl mx-auto text-lg">
-          Nous créons des solutions digitales innovantes pour accompagner les entreprises et former la nouvelle génération de talents en Afrique.
+          Nous créons des solutions digitales innovantes pour accompagner les entreprises et former la nouvelle génération de talents en Afrique.Notre objectif est
+          d'accompagner chaque entreprise et chaque individu vers l'excellence numérique et l'innovation durable...
         </p>
       </header>
 
@@ -30,7 +31,7 @@ export default function About() {
           {
             icon: <Target className="w-12 h-12 text-gradient" />,
             title: "Notre Mission",
-            desc: "Fournir des solutions numériques adaptées aux besoins du continent africain et accélérer la transformation digitale.",
+            desc: "Transformer chaque idée en solution digitale concrète. Nous accompagnons les entrepreneurs, entreprises et particuliers dans la création de produits numériques innovants, tout en offrant des formations et un accompagnement personnalisé pour développer les compétences techniques et digitales nécéssaires dans un monde en constante évolution.",
           },
           {
             icon: <Users className="w-12 h-12 text-gradient" />,
@@ -41,6 +42,11 @@ export default function About() {
             icon: <Heart className="w-12 h-12 text-gradient" />,
             title: "Nos Valeurs",
             desc: "Innovation, partage et impact social : nous croyons en la puissance du numérique pour transformer des vies.",
+          },
+          {
+            icon: <Goal className="w-12 h-12 text-gradient" />,
+            title: "Notre Vision",
+            desc: "Etre le catalyseur de l'innovation numérique en Afrique, en faisant émerger une nouvelle génération de talents capables de concevoir, deployer et gérer des solutions technologiques de pointe."
           },
         ].map((item, idx) => (
           <motion.div
