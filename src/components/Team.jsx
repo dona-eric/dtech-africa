@@ -46,9 +46,9 @@ export default function Team() {
       img: raymondImg,
       name: "Raymond A. ODOUNHITAN",
       role: "Formateur, Developpeur Web Full-Stack",
-      bio: "Spécialiste en Developpement Web, cloud et DevOps Accompagnement de startups africaines.",
-      linkedin: "#",
-      github: "#",
+      bio: "Spécialiste en Developpement Full-Stack Web,Cloud et DevSecOps. Accompagnement de startups africaines.",
+      linkedin: "https://linkedin.com/in/adeniran",
+      github: "https://github.com/Odounhitan2000",
     },
     {
       img: toussImg,

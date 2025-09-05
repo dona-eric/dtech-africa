@@ -30,7 +30,9 @@ const About = () => {
     <section id="about" className="container mx-auto px-6 py-16">
       <div className="max-w-4xl mx-auto text-center">
         <p className="mt-4 text-slate-500">
-          Chez DTech-Africa, nous créons des solutions digitales innovantes pour accompagner entreprises, étudiants et institutions. Nos domaines d’expertise couvrent le développement web, la data science et l’intelligence artificielle. En parallèle, nous formons et mentorons la prochaine génération de talents africains du numérique.
+          Chez DTech-Africa, nous créons des solutions digitales innovantes pour accompagner entreprises, 
+          étudiants et institutions. Nos domaines d’expertise couvrent le développement web, la data science et l’intelligence artificielle.
+          En parallèle, nous formons et mentorons la prochaine génération de talents africains du numérique.
         </p>
       </div>
 

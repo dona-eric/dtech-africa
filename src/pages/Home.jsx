@@ -110,9 +110,9 @@ export default function Home() {
             {/* Coordonnées interactives */}
             <div className="bg-white p-6 rounded-2xl shadow-lg flex flex-col justify-between hover:shadow-2xl transition">
               <h3 className="font-semibold mb-4 text-lg">Nos coordonnées</h3>
-              <p>Email : <a href="mailto:contact@dtech.africa" className="text-sky-600 hover:underline">contact@dtech.africa</a></p>
+              <p>Email : <a href="mailto:dtech.afrik@gmail.com" className="text-sky-600 hover:underline">contact@dtech.africa</a></p>
               <p>WhatsApp : <a href="https://wa.me/+2290141730240" className="text-green-600 hover:underline">+229 01 41 73 02 40</a></p>
-              <p>LinkedIn : <a href="https://linkedin.com/company/dtech-africa" className="text-blue-700 hover:underline">/company/dtech-africa</a></p>
+              <p>LinkedIn : <a href="https://linkedin.com/in/dtech-africa" className="text-blue-700 hover:underline">/company/dtech-africa</a></p>
               <p className="mt-4 text-slate-500">📍 Bénin, Abomey-Calavi</p>
             </div>
           </div>

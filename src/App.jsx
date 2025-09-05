@@ -118,7 +118,7 @@ function Footer() {
   return (
     <footer className="bg-sky-800 dark:bg-slate-900 text-white p-8 mt-8">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <p>© Copyright 2025 Dtech-africa. Tous droits réservés.</p>
+        <p>© Copyright 2025 Dtech-africa. All right reserved.</p>
         <div className="flex gap-4">
           <a href="#" aria-label="LinkedIn"><Linkedin size={20}/></a>
           <a href="https://x.com/dtech" aria-label="Twitter"><Twitter size={20}/></a>

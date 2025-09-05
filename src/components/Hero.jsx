@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import heroImage from "../assets/dtech.png"; // ton image ou illustration
+import heroImage from "../assets/dtech.png";
 
 export default function Hero() {
   return (
@@ -22,7 +22,9 @@ export default function Hero() {
             Transformez vos idées{" "}
             <span className="text-indigo-200">
               <TypeAnimation
-                sequence={["en solution digitales concrètes", 2000, ",devenez un acteur de référence en innovation digitale", 2000, "et accompagner l'Afrique vers l'innovation numérique.", 2000]}
+                sequence={["en solution digitales concrètes", 2000, 
+                  ",devenez un acteur de référence en innovation digitale", 2000, 
+                  "et accompagner l'Afrique vers l'innovation numérique.", 2000]}
                 wrapper="span"
                 repeat={Infinity}
               />

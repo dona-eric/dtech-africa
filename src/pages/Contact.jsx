@@ -79,7 +79,7 @@ export default function Contact() {
               allowFullScreen=""
               loading="lazy"
               referrerPolicy="no-referrer-when-downgrade"
-              title="Localisation DTech-Africa"
+              title="Position DTech-Africa"
             ></iframe>
           </div>
         </motion.div>
