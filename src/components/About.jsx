@@ -5,51 +5,75 @@ import React from "react"
 const About = () => {
   const items = [
     {
-      icon: <Lightbulb className="w-12 h-12 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 text-transparent bg-clip-text" />,
+      icon: <Lightbulb className="w-10 h-10 text-yellow-400" />,
       title: "Innovation Digitale",
       desc: "Solutions modernes pour transformer les activités.",
     },
     {
-      icon: <BookOpenText className="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-400 to-pink-500 text-transparent bg-clip-text" />,
+      icon: <BookOpenText className="w-10 h-10 text-indigo-400" />,
       title: "Formation & Mentorat",
       desc: "Bootcamps, Ateliers et Accompagnement personnalisé.",
     },
     {
-      icon: <Handshake className="w-12 h-12 bg-gradient-to-r from-green-400 via-blue-500 to-pink-500 text-transparent bg-clip-text" />,
+      icon: <Handshake className="w-10 h-10 text-green-400" />,
       title: "Partenariats",
       desc: "Collaborations avec entreprises et institutions locales.",
     },
     {
-      icon: <SquareKanban className="w-12 h-12 bg-gradient-to-r from-green-400 via-blue-500 to-pink-500 text-transparent bg-clip-text" />,
+      icon: <SquareKanban className="w-10 h-10 text-pink-400" />,
       title: "Impact",
       desc: "Projets orientés vers l'impact social en Afrique.",
     },
   ]
 
   return (
-    <section id="about" className="container mx-auto px-6 py-16">
-      <div className="max-w-4xl mx-auto text-center">
-        <p className="mt-4 text-slate-500">
-          Chez DTech-Africa, nous créons des solutions digitales innovantes pour accompagner entreprises, 
-          étudiants et institutions. Nos domaines d’expertise couvrent le développement web, la data science et l’intelligence artificielle.
-          En parallèle, nous formons et mentorons la prochaine génération de talents africains du numérique.
-        </p>
-      </div>
+    <section
+      id="about"
+      className="py-20 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900"
+    >
+      <div className="container mx-auto px-6">
+        
+        {/* Intro */}
+        <div className="max-w-3xl mx-auto text-center mb-14">
+          <div className="w-20 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto mt-2 rounded-full"></div>
+          <p className="mt-6 text-slate-300 leading-relaxed">
+            Chez <span className="font-semibold text-indigo-400">DTech-Africa</span>, 
+            nous créons des solutions digitales innovantes pour accompagner entreprises, 
+            étudiants et institutions. Nos expertises couvrent le développement web, 
+            la data science et l’intelligence artificielle. Nous formons et mentorons 
+            la prochaine génération de talents africains du numérique.
+          </p>
+        </div>
 
-      <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        {items.map((item, idx) => (
-          <motion.div
-            key={idx}
-            className="bg-white dark:bg-slate-800 rounded-2xl shadow-xl p-6 text-center cursor-pointer hover:shadow-2xl transition transform hover:scale-105 hover:-translate-y-1"
-            whileHover={{ rotate: [0, 2, -2, 0] }}
-          >
-            <div className="mx-auto mb-4">{item.icon}</div>
-            <h3 className="text-xl font-semibold bg-clip-text text-transparent bg-gradient-to-r from-green-400 via-blue-500 to-pink-500">
-              {item.title}
-            </h3>
-            <p className="text-slate-600 dark:text-slate-300 mt-2">{item.desc}</p>
-          </motion.div>
-        ))}
+        {/* Cartes */}
+        <motion.div
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8"
+          initial="hidden"
+          whileInView="visible"
+          viewport={{ once: true }}
+          variants={{
+            hidden: {},
+            visible: { transition: { staggerChildren: 0.2 } },
+          }}
+        >
+          {items.map((item, idx) => (
+            <motion.div
+              key={idx}
+              className="bg-slate-900/80 backdrop-blur-lg border border-white/10 shadow-xl rounded-2xl p-6 text-center cursor-pointer hover:shadow-2xl transition transform hover:-translate-y-2"
+              variants={{
+                hidden: { opacity: 0, y: 30 },
+                visible: { opacity: 1, y: 0 },
+              }}
+              whileHover={{ scale: 1.05 }}
+            >
+              <div className="mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-indigo-600 to-pink-600 shadow-lg">
+                {item.icon}
+              </div>
+              <h3 className="text-lg font-semibold text-white">{item.title}</h3>
+              <p className="text-slate-300 mt-2 text-sm">{item.desc}</p>
+            </motion.div>
+          ))}
+        </motion.div>
       </div>
     </section>
   )

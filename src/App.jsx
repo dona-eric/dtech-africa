@@ -1,8 +1,8 @@
 import React, { useState, Suspense, lazy, useEffect } from 'react'
 import { Routes, Route, Link, useLocation } from 'react-router-dom'
-import { motion } from 'framer-motion'
 import { Sun, Moon, Linkedin, Twitter, Mail } from 'lucide-react'
 import logo from "./assets/logo.png";
+
 // Lazy loading pages
 const Home = lazy(() => import('./pages/Home'))
 const About = lazy(() => import('./pages/About'))
@@ -31,46 +31,71 @@ function Nav() {
   }
 
   const navLinks = [
-    {name:'Accueil', path:'/'},
-    {name:'À propos', path:'/about'},
-    {name:'Nos Catalogues', path:'/services'},
-    {name:'Projets', path:'/projects'},
-    {name:'Blog', path:'/blog'},
-    {name:'Contact', path:'/contact'},
-    {name:'S’inscrire', path:'/signup', cta:true}
+    { name: 'Accueil', path: '/' },
+    { name: 'À propos', path: '/about' },
+    { name: 'Nos Catalogues', path: '/services' },
+    { name: 'Projets', path: '/projects' },
+    { name: 'Blog', path: '/blog' },
+    { name: 'Contact', path: '/contact' },
+    { name: 'S’inscrire', path: '/signup', cta: true }
   ]
 
   return (
     <nav className="bg-white dark:bg-slate-900 border-b shadow-sm fixed w-full z-50">
       <div className="container mx-auto flex items-center justify-between p-4">
-        {/* Logo animé */}
+        {/* Logo */}
         <Link to="/" className="flex items-center gap-3">
-          <img src={logo} alt="DTech-Africa" className="w-10 h-10 rounded-full object-cover shadow-2xl border-2 border-gradient-to-r from-orange-50 via-pink-200 to-purple-600 "/>
-          <span className="font-bold text-xl bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-transparent bg-clip-text animate-gradient-x">
+          <img
+            src={logo}
+            alt="DTech-Africa"
+            className="w-10 h-10 rounded-full object-cover shadow-xl border-2 border-purple-600"
+          />
+          <span className="font-bold text-xl text-purple-600 dark:text-purple-400">
             DTECH-AFRICA
           </span>
         </Link>
 
         <div className="flex items-center gap-4">
+          {/* Dark Mode */}
           <button onClick={toggleDark} aria-label="Toggle Dark Mode">
-            {dark ? <Sun size={20} className="text-yellow-400"/> : <Moon size={20} className="text-gray-700"/>}
+            {dark ? (
+              <Sun size={20} className="text-yellow-400" />
+            ) : (
+              <Moon size={20} className="text-gray-700" />
+            )}
           </button>
+
           {/* Hamburger */}
           <button className="sm:hidden" onClick={() => setOpen(!open)} aria-label="menu">
-            <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d={open ? "M6 18L18 6M6 6l12 12" : "M4 6h16M4 12h16M4 18h16"} />
+            <svg
+              className="w-6 h-6"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d={
+                  open
+                    ? 'M6 18L18 6M6 6l12 12'
+                    : 'M4 6h16M4 12h16M4 18h16'
+                }
+              />
             </svg>
           </button>
 
           {/* Desktop Menu */}
-          <div className="hidden sm:flex sm:items-center sm:gap-4">
-            {navLinks.map(link => (
-              <Link 
-                key={link.name} 
-                to={link.path} 
-                className={link.cta 
-                  ? 'px-4 py-2 bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-white rounded hover:opacity-90 transition'
-                  : 'text-transparent bg-clip-text bg-gradient-to-r from-green-400 via-blue-500 to-pink-500 hover:brightness-125 transition'
+          <div className="hidden sm:flex sm:items-center sm:gap-6">
+            {navLinks.map((link) => (
+              <Link
+                key={link.name}
+                to={link.path}
+                className={
+                  link.cta
+                    ? 'px-4 py-2 bg-purple-600 text-white rounded-xl shadow hover:bg-purple-700 transition'
+                    : 'text-slate-700 dark:text-slate-100 hover:text-purple-600 dark:hover:text-purple-400 transition font-medium'
                 }
               >
                 {link.name}
@@ -81,13 +106,17 @@ function Nav() {
       </div>
 
       {/* Mobile Menu */}
-      <div className={`sm:hidden overflow-hidden transition-all duration-300 ${open ? 'max-h-96' : 'max-h-0'}`}>
+      <div
+        className={`sm:hidden overflow-hidden transition-all duration-300 ${
+          open ? 'max-h-96' : 'max-h-0'
+        }`}
+      >
         <div className="bg-white dark:bg-slate-800 px-4 pb-4 flex flex-col gap-2">
-          {navLinks.map(link => (
-            <Link 
-              key={link.name} 
-              to={link.path} 
-              className="block px-4 py-3 border-b border-gray-200 dark:border-gray-700 text-slate-800 dark:text-slate-100"
+          {navLinks.map((link) => (
+            <Link
+              key={link.name}
+              to={link.path}
+              className="block px-4 py-3 border-b border-gray-200 dark:border-gray-700 text-slate-800 dark:text-slate-100 hover:text-purple-600 dark:hover:text-purple-400 transition"
               onClick={() => setOpen(false)}
             >
               {link.name}
@@ -95,24 +124,10 @@ function Nav() {
           ))}
         </div>
       </div>
-
-      {/* Animation Gradient Keyframes */}
-      <style>
-        {`
-          @keyframes gradient-x {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-          }
-          .animate-gradient-x {
-            background-size: 200% 200%;
-            animation: gradient-x 4s ease infinite;
-          }
-        `}
-      </style>
     </nav>
   )
 }
+
 // Footer
 function Footer() {
   return (
@@ -120,13 +135,28 @@ function Footer() {
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
         <p>© Copyright 2025 dtech-africa. All rights reserved.</p>
         <div className="flex gap-4">
-          <a href="#" aria-label="LinkedIn"><Linkedin size={20}/></a>
-          <a href="https://x.com/dtech" aria-label="Twitter"><Twitter size={20}/></a>
-          <a href="mailto:dtech.afrik@gmail.com" aria-label="Email"><Mail size={20}/></a>
+          <a href="#" aria-label="LinkedIn">
+            <Linkedin size={20} />
+          </a>
+          <a href="https://x.com/dtech" aria-label="Twitter">
+            <Twitter size={20} />
+          </a>
+          <a href="mailto:dtech.afrik@gmail.com" aria-label="Email">
+            <Mail size={20} />
+          </a>
         </div>
         <form className="flex gap-2">
-          <input type="email" placeholder="Votre email" className="px-3 py-1 rounded text-black"/>
-          <button type="submit" className="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 transition">S’abonner</button>
+          <input
+            type="email"
+            placeholder="Votre email"
+            className="px-3 py-1 rounded text-black"
+          />
+          <button
+            type="submit"
+            className="px-3 py-1 bg-orange-500 rounded hover:bg-orange-600 transition"
+          >
+            S’abonner
+          </button>
         </form>
       </div>
     </footer>

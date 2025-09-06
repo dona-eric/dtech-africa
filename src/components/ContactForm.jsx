@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Loader2, CheckCircle, XCircle } from "lucide-react";
+import { Loader2, CheckCircle, XCircle, Mail, User, MessageSquare, Phone, MapPin } from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
 import { api } from "../api/api";
-
 
 export default function ContactForm() {
   const [form, setForm] = useState({ name: "", email: "", message: "" });
@@ -12,93 +12,135 @@ export default function ContactForm() {
 
   const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
 
-
-  const handleSubmit = async e => {
-      e.preventDefault();
-      setStatus("sending");
-      try {
-        await api.postContact(form);
-        setStatus("success");
-        setForm({ name: "", email: "", message: "" });
-      } catch (err) {
-        setStatus("error");
-      }
-    };
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.message) {
+      setStatus("missing");
+      return;
+    }
+    if (!validateEmail(form.email)) {
+      setStatus("invalid");
+      return;
+    }
+    setStatus("sending");
+    try {
+      await api.postContact(form);
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+    }
+  };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow">
-      <form onSubmit={handleSubmit} className="space-y-4">
-        <div>
-          <label className="block text-sm">Nom</label>
-          <input
-            name="name"
-            value={form.name}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded focus:ring focus:ring-sky-200"
-            placeholder="Votre nom complet"
-          />
-        </div>
-        <div>
-          <label className="block text-sm">Email</label>
-          <input
-            name="email"
-            type="email"
-            value={form.email}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded focus:ring focus:ring-sky-200"
-            placeholder="exemple@email.com"
-          />
-        </div>
-        <div>
-          <label className="block text-sm">Message</label>
-          <textarea
-            name="message"
-            value={form.message}
-            onChange={handleChange}
-            className="w-full mt-1 p-2 border rounded focus:ring focus:ring-sky-200"
-            rows={4}
-            placeholder="Écrivez votre message ici..."
-          />
-        </div>
-        <div className="flex items-center justify-between">
-          <button
-            type="submit"
-            disabled={status === "sending"}
-            className={`px-4 py-2 rounded text-white flex items-center gap-2 ${
-              status === "sending"
-                ? "bg-sky-400 cursor-not-allowed"
-                : "bg-sky-600 hover:bg-sky-700"
-            }`}
-          >
-            {status === "sending" && <Loader2 className="animate-spin w-4 h-4" />}
-            {status === "sending" ? "Envoi..." : "Envoyer"}
-          </button>
+    <section id="contact" className="py-20 bg-gradient-to-br from-slate-900 via-indigo-950 to-slate-900">
+      <div className="container mx-auto px-6 grid md:grid-cols-2 gap-12 items-center">
+        
+        {/* Formulaire */}
+        <motion.div
+          className="bg-slate-900/80 backdrop-blur-lg border border-white/10 shadow-xl rounded-2xl p-8"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
+        >
+          <h2 className="text-3xl font-bold text-white mb-6">Contactez-nous</h2>
+          <form onSubmit={handleSubmit} className="space-y-4">
+            
+            {/* Nom */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300">Nom</label>
+              <div className="relative mt-1">
+                <User className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  className="w-full pl-10 pr-3 py-2 bg-slate-800/70 border border-white/10 text-white placeholder-slate-400 rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none"
+                  placeholder="Votre nom complet"
+                />
+              </div>
+            </div>
 
-          {status === "sent" && (
-            <span className="text-green-600 flex items-center gap-1 text-sm">
-              <CheckCircle className="w-4 h-4" /> Message envoyé — merci !
-            </span>
-          )}
-          {status === "error" && (
-            <span className="text-red-600 flex items-center gap-1 text-sm">
-              <XCircle className="w-4 h-4" /> Erreur, réessayez.
-            </span>
-          )}
-          {status === "invalid" && (
-            <span className="text-orange-600 text-sm">
-              Email invalide.
-            </span>
-          )}
-          {status === "missing" && (
-            <span className="text-orange-600 text-sm">
-              Tous les champs sont requis.
-            </span>
-          )}
-        </div>
-      </form>
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300">Email</label>
+              <div className="relative mt-1">
+                <Mail className="absolute left-3 top-2.5 w-4 h-4 text-slate-400" />
+                <input
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="w-full pl-10 pr-3 py-2 bg-slate-800/70 border border-white/10 text-white placeholder-slate-400 rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none"
+                  placeholder="exemple@email.com"
+                />
+              </div>
+            </div>
 
-      {/* Coordonnées */}
-      
-    </div>
+            {/* Message */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300">Message</label>
+              <div className="relative mt-1">
+                <MessageSquare className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  rows={4}
+                  className="w-full pl-10 pr-3 py-2 bg-slate-800/70 border border-white/10 text-white placeholder-slate-400 rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none"
+                  placeholder="Écrivez votre message ici..."
+                />
+              </div>
+            </div>
+
+            {/* Bouton */}
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className={`w-full px-6 py-3 rounded-xl text-white font-medium shadow-lg flex items-center justify-center gap-2 transition ${
+                status === "sending"
+                  ? "bg-indigo-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-indigo-600 to-pink-600 hover:scale-105"
+              }`}
+            >
+              {status === "sending" && <Loader2 className="animate-spin w-5 h-5" />}
+              {status === "sending" ? "Envoi..." : "Envoyer"}
+            </button>
+
+            {/* Statuts */}
+            <AnimatePresence mode="wait">
+              {status === "success" && (
+                <motion.p
+                  className="text-green-400 flex items-center gap-2 text-sm mt-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <CheckCircle className="w-4 h-4" /> Message envoyé — merci !
+                </motion.p>
+              )}
+              {status === "error" && (
+                <motion.p
+                  className="text-red-400 flex items-center gap-2 text-sm mt-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <XCircle className="w-4 h-4" /> Erreur, réessayez.
+                </motion.p>
+              )}
+              {status === "invalid" && (
+                <p className="text-orange-400 text-sm">Email invalide.</p>
+              )}
+              {status === "missing" && (
+                <p className="text-orange-400 text-sm">Tous les champs sont requis.</p>
+              )}
+            </AnimatePresence>
+          </form>
+        </motion.div>
+
+      </div>
+    </section>
   );
 }

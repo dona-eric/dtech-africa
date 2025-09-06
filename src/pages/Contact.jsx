@@ -1,89 +1,193 @@
-import React from "react"
-import { motion } from "framer-motion"
-import { Mail, Phone, MapPin, Linkedin } from "lucide-react"
-import ContactForm from "../components/ContactForm"
+import React, { useState } from "react";
+import {
+  Loader2,
+  CheckCircle,
+  XCircle,
+  Mail,
+  User,
+  MessageSquare,
+  Phone,
+  MapPin,
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import { api } from "../api/api";
 
-export default function Contact() {
+export default function ContactForm() {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState(null);
+
+  const handleChange = (e) =>
+    setForm({ ...form, [e.target.name]: e.target.value });
+
+  const validateEmail = (email) => /\S+@\S+\.\S+/.test(email);
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (!form.name || !form.email || !form.message) {
+      setStatus("missing");
+      return;
+    }
+    if (!validateEmail(form.email)) {
+      setStatus("invalid");
+      return;
+    }
+    setStatus("sending");
+    try {
+      await api.postContact(form);
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+    } catch (err) {
+      setStatus("error");
+    }
+  };
+
   return (
-    <div className="container mx-auto px-6 py-12">
-      {/* Header */}
-      <header className="text-center mb-10">
-        <motion.h2
-          className="text-4xl font-bold text-slate-800"
-          initial={{ opacity: 0, y: -20 }}
-          animate={{ opacity: 1, y: 0 }}
-        >
-          Contactez-<span className="text-indigo-600">nous</span>
-        </motion.h2>
-        <p className="text-slate-600 mt-3 max-w-2xl mx-auto">
-          Utilisez le formulaire ou nos coordonnées pour entrer en contact rapidement.
-        </p>
-      </header>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+    <section
+      id="contact"
+      className="py-20 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900"
+    >
+      <div className="container mx-auto px-6 grid md:grid-cols-2 gap-16 items-center">
         {/* Formulaire */}
         <motion.div
-          initial={{ opacity: 0, x: -30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          className="bg-slate-900/80 backdrop-blur-lg border border-white/10 shadow-2xl rounded-2xl p-10 w-full"
+          initial={{ opacity: 0, y: 50 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8 }}
         >
-          <ContactForm />
+          <h2 className="text-3xl font-bold text-white mb-6">Contactez-nous</h2>
+          <form onSubmit={handleSubmit} className="space-y-6">
+            {/* Nom */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300">
+                Nom
+              </label>
+              <div className="relative mt-1">
+                <User className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                <input
+                  name="name"
+                  value={form.name}
+                  onChange={handleChange}
+                  className="w-full pl-10 pr-3 py-3 border border-slate-700 rounded-lg bg-slate-800 text-white placeholder-slate-400 focus:ring-2 focus:ring-indigo-500 outline-none"
+                  placeholder="Votre nom complet"
+                />
+              </div>
+            </div>
+
+            {/* Email */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300">
+                Email
+              </label>
+              <div className="relative mt-1">
+                <Mail className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                <input
+                  name="email"
+                  type="email"
+                  value={form.email}
+                  onChange={handleChange}
+                  className="w-full pl-10 pr-3 py-3 border border-slate-700 rounded-lg bg-slate-800 text-white placeholder-slate-400 focus:ring-2 focus:ring-indigo-500 outline-none"
+                  placeholder="exemple@email.com"
+                />
+              </div>
+            </div>
+
+            {/* Message */}
+            <div>
+              <label className="block text-sm font-medium text-slate-300">
+                Message
+              </label>
+              <div className="relative mt-1">
+                <MessageSquare className="absolute left-3 top-3 w-4 h-4 text-slate-400" />
+                <textarea
+                  name="message"
+                  value={form.message}
+                  onChange={handleChange}
+                  rows={5}
+                  className="w-full pl-10 pr-3 py-3 border border-slate-700 rounded-lg bg-slate-800 text-white placeholder-slate-400 focus:ring-2 focus:ring-indigo-500 outline-none resize-none"
+                  placeholder="Écrivez votre message ici..."
+                />
+              </div>
+            </div>
+
+            {/* Bouton */}
+            <button
+              type="submit"
+              disabled={status === "sending"}
+              className={`w-full px-6 py-3 rounded-xl text-white font-medium shadow-lg flex items-center justify-center gap-2 transition ${
+                status === "sending"
+                  ? "bg-indigo-400 cursor-not-allowed"
+                  : "bg-gradient-to-r from-indigo-600 to-purple-600 hover:scale-105"
+              }`}
+            >
+              {status === "sending" && (
+                <Loader2 className="animate-spin w-5 h-5" />
+              )}
+              {status === "sending" ? "Envoi..." : "Envoyer"}
+            </button>
+
+            {/* Statuts */}
+            <AnimatePresence mode="wait">
+              {status === "success" && (
+                <motion.p
+                  className="text-green-500 flex items-center gap-2 text-sm mt-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <CheckCircle className="w-4 h-4" /> Message envoyé — merci !
+                </motion.p>
+              )}
+              {status === "error" && (
+                <motion.p
+                  className="text-red-500 flex items-center gap-2 text-sm mt-2"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  exit={{ opacity: 0 }}
+                >
+                  <XCircle className="w-4 h-4" /> Erreur, réessayez.
+                </motion.p>
+              )}
+              {status === "invalid" && (
+                <p className="text-orange-400 text-sm">Email invalide.</p>
+              )}
+              {status === "missing" && (
+                <p className="text-orange-400 text-sm">
+                  Tous les champs sont requis.
+                </p>
+              )}
+            </AnimatePresence>
+          </form>
         </motion.div>
 
-        {/* Coordonnées + Carte */}
+        {/* Coordonnées */}
         <motion.div
-          className="bg-white p-6 rounded-2xl shadow hover:shadow-lg transition"
-          initial={{ opacity: 0, x: 30 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6 }}
+          className="space-y-6 text-slate-300"
+          initial={{ opacity: 0, x: 50 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.8, delay: 0.2 }}
         >
-          <h4 className="font-semibold text-xl mb-4">Nos coordonnées</h4>
-
-          <div className="space-y-4 text-sm mb-6">
-            <a
-              href="mailto:dtech.afrik@gmail.com"
-              className="flex items-center gap-3 text-slate-700 hover:text-indigo-600"
-            >
-              <Mail className="w-5 h-5" /> dtech.afrik@gmail.com
-            </a>
-
-            <a
-              href="https://wa.me/2290141730240"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-slate-700 hover:text-green-600"
-            >
-              <Phone className="w-5 h-5" /> +229 01 41 73 02 40
-            </a>
-
-            <a
-              href="https://www.linkedin.com/in/dtech-africa"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="flex items-center gap-3 text-slate-700 hover:text-blue-600"
-            >
-              <Linkedin className="w-5 h-5" /> LinkedIn
-            </a>
-
-            <div className="flex items-center gap-3 text-slate-500">
-              <MapPin className="w-5 h-5" /> Bénin, Abomey-Calavi
+          <h3 className="text-2xl font-semibold text-white">Nos coordonnées</h3>
+          <p className="text-slate-400">
+            Vous pouvez aussi nous écrire ou passer à notre bureau.
+          </p>
+          <div className="space-y-4">
+            <div className="flex items-center gap-3">
+              <MapPin className="w-5 h-5 text-indigo-400" />
+              <span>Cotonou, Bénin</span>
             </div>
-          </div>
-
-          {/* Carte Google intégrée */}
-          <div className="w-full h-60 rounded-lg overflow-hidden shadow">
-            <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3985.861109064617!2d2.337!3d6.4483!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x103b8200abcd123%3A0x123456789abcdef!2sAbomey-Calavi!5e0!3m2!1sfr!2sbj!4v1700000000000"
-              width="100%"
-              height="100%"
-              allowFullScreen=""
-              loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-              title="Position DTech-Africa"
-            ></iframe>
+            <div className="flex items-center gap-3">
+              <Phone className="w-5 h-5 text-indigo-400" />
+              <span>+229 61 00 00 00</span>
+            </div>
+            <div className="flex items-center gap-3">
+              <Mail className="w-5 h-5 text-indigo-400" />
+              <span>contact@dtech-africa.com</span>
+            </div>
           </div>
         </motion.div>
       </div>
-    </div>
-  )
+    </section>
+  );
 }

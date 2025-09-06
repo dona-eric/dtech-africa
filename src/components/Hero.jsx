@@ -7,47 +7,70 @@ export default function Hero() {
   return (
     <section className="relative overflow-hidden">
       {/* Background animé */}
-      <div className="absolute inset-0 bg-gradient-to-r from-indigo-400 via-purple-400 to-pink-400 animate-gradientBackground opacity-40 -z-10"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 animate-gradientBackground opacity-40 -z-10"></div>
+
+      {/* Particules flottantes */}
+      <div className="absolute inset-0 -z-10">
+        {[...Array(10)].map((_, i) => (
+          <motion.span
+            key={i}
+            className="absolute w-3 h-3 rounded-full bg-white/40 shadow-md"
+            initial={{ y: Math.random() * 600, x: Math.random() * 1200, opacity: 0 }}
+            animate={{
+              y: [null, Math.random() * -800],
+              opacity: [0, 1, 0],
+            }}
+            transition={{
+              duration: 8 + Math.random() * 5,
+              repeat: Infinity,
+              delay: Math.random() * 5,
+            }}
+          />
+        ))}
+      </div>
 
       <div className="container mx-auto px-6 py-24 flex flex-col-reverse md:flex-row items-center gap-12 relative z-10">
-        
         {/* Texte + CTA */}
         <motion.div
-          className="flex-1 text-center md:text-left"
+          className="flex-1 text-center md:text-left bg-white/30 backdrop-blur-md rounded-2xl p-8 shadow-2xl"
           initial={{ opacity: 0, x: -50 }}
           animate={{ opacity: 1, x: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1 className="text-4xl md:text-5xl font-bold text-slate-600 mb-4">
-            Transformez vos idées{" "}
-            <span className="text-indigo-200">
+          <h1 className="text-4xl md:text-5xl font-bold text-slate-800 mb-4">
+            Transformez vos idées {" "}
+            <span className="bg-gradient-to-r from-indigo-500 to-pink-500 bg-clip-text text-transparent">
               <TypeAnimation
-                sequence={["en solution digitales concrètes", 2000, 
-                  ",devenez un acteur de référence en innovation digitale", 2000, 
-                  "et accompagner l'Afrique vers l'innovation numérique.", 2000]}
+                sequence={[
+                  "en solutions digitales concrètes", 2000,
+                  ", devenez un acteur de référence en innovation digitale", 2000,
+                  "et accompagnez l'Afrique vers l'innovation numérique.", 2000,
+                ]}
                 wrapper="span"
                 repeat={Infinity}
               />
             </span>
           </h1>
-          <p className="text-slate-500 mb-8 max-w-xl mx-auto md:mx-0">
-            Chez DTech-Africa, chaque idée devient technologie, chaque talent devient expert,
-            et chaque projet change le futur digital de l'Afrique.
-            Nous innovons,formons,transformons, nous donnons vie à vos idées et préparons l'Afrique au numérique de demain.
+          <p className="text-slate-700 mb-8 max-w-xl mx-auto md:mx-0">
+            Chez <span className="font-semibold">DTech-Africa</span>, chaque idée devient technologie, chaque talent devient expert,
+            et chaque projet change le futur digital de l'Afrique. Nous innovons, formons, transformons :
+            nous donnons vie à vos idées et préparons l'Afrique au numérique de demain.
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center md:justify-start">
             <motion.a
               href="#trainings"
-              className="px-6 py-3 bg-indigo-600 text-white rounded-lg shadow-lg hover:bg-indigo-700 hover:scale-105 transition-transform duration-300"
+              className="px-6 py-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white rounded-lg shadow-lg hover:from-indigo-700 hover:to-purple-700 hover:scale-105 transition-transform duration-300"
               whileHover={{ scale: 1.05 }}
+              transition={{ delay: 0.2 }}
             >
               Découvrir nos formations
             </motion.a>
             <motion.a
               href="#contact"
-              className="px-6 py-3 border border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-transform duration-300"
+              className="px-6 py-3 border-2 border-indigo-600 text-indigo-600 rounded-lg hover:bg-indigo-50 hover:scale-105 transition-transform duration-300"
               whileHover={{ scale: 1.05 }}
+              transition={{ delay: 0.4 }}
             >
               Nous contacter
             </motion.a>
@@ -55,9 +78,8 @@ export default function Hero() {
         </motion.div>
 
         {/* Image flottante */}
-     
         <motion.div
-          className="relative w-72 h-72 md:w-96 md:h-96 rounded-3xl overflow-hidden shadow-2xl"
+          className="relative w-72 h-72 md:w-96 md:h-96 rounded-full overflow-hidden shadow-[0_0_40px_rgba(99,102,241,0.6)]"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1 }}
@@ -66,7 +88,7 @@ export default function Hero() {
           <img
             src={heroImage}
             alt="DTech Africa"
-            className="w-45 h-45 rounded-full object-cover object-center transform hover:scale-105 transition duration-500"
+            className="w-full h-full object-cover object-center transform hover:scale-110 transition duration-700"
           />
         </motion.div>
       </div>

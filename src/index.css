@@ -2,13 +2,13 @@
 @tailwind components;
 @tailwind utilities;
 
-body { font-family: Inter, ui-free-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial }
 body {
+  font-family: Inter, ui-free-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial;
   margin: 0;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  background-color: #f8fafc; /* subtle off-white */
-  color: #0f172a; /* slate-900 */
+  background-color: #f8fafc; /* clair premium */
+  color: #0f172a; /* texte slate-900 */
 }
 
 /* Layout helpers */
@@ -16,21 +16,23 @@ body {
 
 @layer components {
   .btn-primary {
-    @apply bg-brand text-white px-4 py-2 rounded-md shadow;
+    @apply bg-brand text-white px-4 py-2 rounded-md shadow hover:bg-brand-dark transition;
   }
   .btn-ghost {
-    @apply border border-brand text-brand px-4 py-2 rounded-md;
+    @apply border border-brand text-brand px-4 py-2 rounded-md hover:bg-brand-light hover:text-white transition;
   }
 }
 
 /* Header logo */
 .site-logo { max-height: 44px; }
 
-/* Utility tweaks */
-h1,h2,h3 { color: #04264a }
+/* Titres */
+h1,h2,h3 { 
+  color: #4c1d95; /* brand foncé */
+  font-weight: 700;
+}
 
-
+/* Code blocks */
 code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }

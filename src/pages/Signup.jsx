@@ -7,30 +7,30 @@ export default function Signup() {
   const programs = [
     {
       title: "Développement Web",
-      icon: <Code size={28} className="text-sky-600 animate-bounce" />,
+      icon: <Code size={28} className="text-sky-400 animate-bounce" />,
       description: "Sites vitrines, e-commerce et applications web sur-mesure.",
     },
     {
       title: "Data & IA",
-      icon: <Cpu size={28} className="text-green-600 animate-pulse" />,
+      icon: <Cpu size={28} className="text-green-400 animate-pulse" />,
       description: "Analyse de données, Machine Learning et solutions IA sur-mesure.",
     },
     {
       title: "Formations & Mentorat",
-      icon: <BookOpen size={28} className="text-purple-600 animate-bounce" />,
+      icon: <BookOpen size={28} className="text-purple-400 animate-bounce" />,
       description: "Bootcamps, cours pratiques et mentorat professionnel.",
     },
     {
       title: "Solutions d'entreprise",
-      icon: <Layers size={28} className="text-indigo-600 animate-pulse" />,
+      icon: <Layers size={28} className="text-indigo-400 animate-pulse" />,
       description: "ERP, CRM, chatbots et intégrations métiers.",
     },
   ];
 
   return (
-    <main className="relative min-h-screen bg-gradient-to-br from-indigo-50 via-purple-50 to-pink-50 py-16">
+    <main className="relative min-h-screen bg-gradient-to-br from-slate-900 via-indigo-950 to-purple-950 py-16 text-white">
       {/* Animated background */}
-      <div className="absolute inset-0 -z-10 opacity-20 animate-gradient-slow"></div>
+      <div className="absolute inset-0 -z-10 opacity-30 animate-gradient-slow"></div>
 
       {/* Header */}
       <header className="text-center mb-12 px-6">
@@ -38,7 +38,7 @@ export default function Signup() {
           initial={{ opacity: 0, y: -30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-4xl md:text-5xl font-bold text-slate-800"
+          className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-indigo-400 to-purple-400 bg-clip-text text-transparent"
         >
           Inscrivez-vous à une formation
         </motion.h1>
@@ -46,7 +46,7 @@ export default function Signup() {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mt-4 text-slate-600 max-w-2xl mx-auto"
+          className="mt-4 text-slate-300 max-w-2xl mx-auto"
         >
           Choisissez votre programme et rejoignez nos formations pratiques et
           professionnelles pour booster vos compétences digitales.
@@ -64,12 +64,12 @@ export default function Signup() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: idx * 0.1 }}
-              className="bg-white p-4 rounded-xl shadow hover:shadow-2xl flex items-start gap-4 cursor-pointer transition-transform hover:scale-105"
+              className="bg-slate-900/70 backdrop-blur-lg border border-white/10 p-5 rounded-2xl shadow-lg hover:shadow-indigo-900/50 flex items-start gap-4 cursor-pointer transition-transform hover:scale-105"
             >
               <div>{p.icon}</div>
               <div>
-                <h3 className="font-semibold text-lg">{p.title}</h3>
-                <p className="mt-1 text-sm text-slate-600">{p.description}</p>
+                <h3 className="font-semibold text-lg text-white">{p.title}</h3>
+                <p className="mt-1 text-sm text-slate-300">{p.description}</p>
               </div>
             </motion.div>
           ))}
@@ -81,6 +81,7 @@ export default function Signup() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
+          className="bg-slate-900/70 backdrop-blur-lg border border-white/10 p-6 rounded-2xl shadow-lg hover:shadow-indigo-900/50"
         >
           <SignupForm />
         </motion.div>
@@ -94,7 +95,7 @@ export default function Signup() {
         viewport={{ once: true }}
         transition={{ duration: 0.8 }}
       >
-        <p className="text-slate-600 max-w-xl mx-auto">
+        <p className="text-slate-400 max-w-xl mx-auto">
           Après votre inscription, notre équipe vous contactera pour confirmer
           votre place et vous fournir toutes les informations nécessaires.
         </p>
@@ -109,7 +110,7 @@ export default function Signup() {
             100% { background-position: 0% 50%; }
           }
           .animate-gradient-slow {
-            background: linear-gradient(135deg, #c3dafe, #e9d5ff, #fbcfe8);
+            background: linear-gradient(135deg, #312e81, #5b21b6, #7e22ce, #db2777);
             background-size: 400% 400%;
             animation: gradientSlow 25s ease infinite;
           }
