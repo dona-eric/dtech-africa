@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-
+import partnerImg from "../assets/meta.jpg";
 const TestimonialCard = ({ quote, author, role }) => (
   <motion.div
     className="bg-white p-6 rounded-2xl shadow-lg text-center"
@@ -45,9 +45,8 @@ export default function Testimonials() {
       {/* Partenaires */}
       <div className="mt-12 text-center">
         <h4 className="font-semibold mb-4">Nos partenaires</h4>
-        <div className="flex items-center justify-center gap-8 flex-wrap">
-          <motion.img src="/partner1.png" alt="partner" className="h-10 object-contain" whileHover={{ scale: 1.1 }} />
-          <motion.img src="/partner2.png" alt="partner" className="h-10 object-contain" whileHover={{ scale: 1.1 }} />
+        <div className="w-32 h-32 rounded-full mx-auto object-cover border-2 border-sky-500">
+          <motion.img src={partnerImg} alt="partner" className="w-32 h-32 rounded-full mx-auto object-cover border-2 border-sky-500" whileHover={{ scale: 1.1 }} />
         </div>
       </div>
     </section>

@@ -33,7 +33,7 @@ function Nav() {
   const navLinks = [
     {name:'Accueil', path:'/'},
     {name:'À propos', path:'/about'},
-    {name:'Services', path:'/services'},
+    {name:'Nos Catalogues', path:'/services'},
     {name:'Projets', path:'/projects'},
     {name:'Blog', path:'/blog'},
     {name:'Contact', path:'/contact'},
@@ -47,7 +47,7 @@ function Nav() {
         <Link to="/" className="flex items-center gap-3">
           <img src={logo} alt="DTech-Africa" className="w-10 h-10 rounded-full object-cover shadow-2xl border-2 border-gradient-to-r from-orange-50 via-pink-200 to-purple-600 "/>
           <span className="font-bold text-xl bg-gradient-to-r from-orange-400 via-pink-500 to-purple-600 text-transparent bg-clip-text animate-gradient-x">
-            DTech-Africa
+            DTECH-AFRICA
           </span>
         </Link>
 
@@ -118,7 +118,7 @@ function Footer() {
   return (
     <footer className="bg-sky-800 dark:bg-slate-900 text-white p-8 mt-8">
       <div className="container mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-        <p>© Copyright 2025 Dtech-africa. All right reserved.</p>
+        <p>© Copyright 2025 dtech-africa. All rights reserved.</p>
         <div className="flex gap-4">
           <a href="#" aria-label="LinkedIn"><Linkedin size={20}/></a>
           <a href="https://x.com/dtech" aria-label="Twitter"><Twitter size={20}/></a>

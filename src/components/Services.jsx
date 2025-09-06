@@ -56,7 +56,7 @@ export default function Services() {
     >
       <div className="text-center mb-12">
         <h2 className="text-3xl md:text-4xl font-bold text-slate-800">
-          Nos services
+          Nos Catalogues
         </h2>
         <p className="mt-2 text-slate-600 max-w-2xl mx-auto">
           Des offres pour les entreprises, les étudiants et les institutions,

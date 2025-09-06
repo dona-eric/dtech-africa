@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { TypeAnimation } from "react-type-animation";
-import heroImage from "../assets/dtech.png";
+import heroImage from "../assets/Dtech-Africa.jpg";
 
 export default function Hero() {
   return (
@@ -66,7 +66,7 @@ export default function Hero() {
           <img
             src={heroImage}
             alt="DTech Africa"
-            className="w-50 h-45 rounded-full object-cover object-center transform hover:scale-105 transition duration-500"
+            className="w-45 h-45 rounded-full object-cover object-center transform hover:scale-105 transition duration-500"
           />
         </motion.div>
       </div>

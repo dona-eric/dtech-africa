@@ -35,7 +35,7 @@ export default function ServicesSection() {
 
       <div className="container mx-auto px-6">
         <header className="text-center mb-12">
-          <h2 className="text-4xl font-bold text-slate-800">Nos services</h2>
+          <h2 className="text-4xl font-bold text-slate-800">Nos Catalogues</h2>
           <p className="text-slate-600 mt-2 max-w-xl mx-auto">
             Découvrez nos offres pour entreprises et apprenants, adaptées à vos besoins numériques.
           </p>

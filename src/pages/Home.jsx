@@ -2,10 +2,8 @@ import React from 'react'
 import { motion } from 'framer-motion'
 import Hero from '../components/Hero'
 import About from '../components/About'
-import Services from '../components/Services'
 import Team from '../components/Team'
 import Trainings from '../components/Trainings'
-import Portfolio from '../components/Portfolio'
 import Testimonials from '../components/Testimonials'
 import ContactForm from '../components/ContactForm'
 
@@ -29,17 +27,6 @@ export default function Home() {
       </motion.section>
 
       {/* Services avec hover animations */}
-      <motion.section
-        id="services"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.2 }}
-        viewport={{ once: true }}
-        className="bg-slate-50 py-16"
-      >
-        <Services />
-      </motion.section>
-
       {/* Trainings / Formations */}
       <motion.section
         id="trainings"
@@ -50,18 +37,6 @@ export default function Home() {
         className="bg-white py-16"
       >
         <Trainings />
-      </motion.section>
-
-      {/* Portfolio / Projets avec hover overlay */}
-      <motion.section
-        id="portfolio"
-        initial={{ opacity: 0, y: 50 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 0.4 }}
-        viewport={{ once: true }}
-        className="bg-slate-50 py-16"
-      >
-        <Portfolio />
       </motion.section>
 
       {/* Team / Mentors avec hover bio */}
