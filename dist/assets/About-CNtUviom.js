@@ -1,0 +1,21 @@
+import{c as t,R as e}from"./index-v_0WwqLa.js";import{m as n}from"./motion-Dq9D8Zuw.js";/**
+ * @license lucide-react v0.542.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const s=[["path",{d:"M12 7v14",key:"1akyts"}],["path",{d:"M16 12h2",key:"7q9ll5"}],["path",{d:"M16 8h2",key:"msurwy"}],["path",{d:"M3 18a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1h5a4 4 0 0 1 4 4 4 4 0 0 1 4-4h5a1 1 0 0 1 1 1v13a1 1 0 0 1-1 1h-6a3 3 0 0 0-3 3 3 3 0 0 0-3-3z",key:"ruj8y"}],["path",{d:"M6 12h2",key:"32wvfc"}],["path",{d:"M6 8h2",key:"30oboj"}]],r=t("book-open-text",s);/**
+ * @license lucide-react v0.542.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const l=[["path",{d:"m11 17 2 2a1 1 0 1 0 3-3",key:"efffak"}],["path",{d:"m14 14 2.5 2.5a1 1 0 1 0 3-3l-3.88-3.88a3 3 0 0 0-4.24 0l-.88.88a1 1 0 1 1-3-3l2.81-2.81a5.79 5.79 0 0 1 7.06-.87l.47.28a2 2 0 0 0 1.42.25L21 4",key:"9pr0kb"}],["path",{d:"m21 3 1 11h-2",key:"1tisrp"}],["path",{d:"M3 3 2 14l6.5 6.5a1 1 0 1 0 3-3",key:"1uvwmv"}],["path",{d:"M3 4h8",key:"1ep09j"}]],c=t("handshake",l);/**
+ * @license lucide-react v0.542.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const d=[["path",{d:"M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5",key:"1gvzjb"}],["path",{d:"M9 18h6",key:"x1upvd"}],["path",{d:"M10 22h4",key:"ceow96"}]],m=t("lightbulb",d);/**
+ * @license lucide-react v0.542.0 - ISC
+ *
+ * This source code is licensed under the ISC license.
+ * See the LICENSE file in the root directory of this source tree.
+ */const h=[["rect",{width:"18",height:"18",x:"3",y:"3",rx:"2",key:"afitv7"}],["path",{d:"M8 7v7",key:"1x2jlm"}],["path",{d:"M12 7v4",key:"xawao1"}],["path",{d:"M16 7v9",key:"1hp2iy"}]],p=t("square-kanban",h),v=()=>{const o=[{icon:e.createElement(m,{className:"w-10 h-10 text-yellow-400"}),title:"Innovation Digitale",desc:"Solutions modernes pour transformer les activités."},{icon:e.createElement(r,{className:"w-10 h-10 text-indigo-400"}),title:"Formation & Mentorat",desc:"Bootcamps, Ateliers et Accompagnement personnalisé."},{icon:e.createElement(c,{className:"w-10 h-10 text-green-400"}),title:"Partenariats",desc:"Collaborations avec entreprises et institutions locales."},{icon:e.createElement(p,{className:"w-10 h-10 text-pink-400"}),title:"Impact",desc:"Projets orientés vers l'impact social en Afrique."}];return e.createElement("section",{id:"about",className:"py-20 bg-gradient-to-b from-slate-900 via-indigo-950 to-slate-900"},e.createElement("div",{className:"container mx-auto px-6"},e.createElement("div",{className:"max-w-3xl mx-auto text-center mb-14"},e.createElement("div",{className:"w-20 h-1 bg-gradient-to-r from-indigo-500 to-pink-500 mx-auto mt-2 rounded-full"}),e.createElement("p",{className:"mt-6 text-slate-300 leading-relaxed"},"Chez ",e.createElement("span",{className:"font-semibold text-indigo-400"},"DTech-Africa"),", nous créons des solutions digitales innovantes pour accompagner entreprises, étudiants et institutions. Nos expertises couvrent le développement web, la data science et l’intelligence artificielle. Nous formons et mentorons la prochaine génération de talents africains du numérique.")),e.createElement(n.div,{className:"grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8",initial:"hidden",whileInView:"visible",viewport:{once:!0},variants:{hidden:{},visible:{transition:{staggerChildren:.2}}}},o.map((a,i)=>e.createElement(n.div,{key:i,className:"bg-slate-900/80 backdrop-blur-lg border border-white/10 shadow-xl rounded-2xl p-6 text-center cursor-pointer hover:shadow-2xl transition transform hover:-translate-y-2",variants:{hidden:{opacity:0,y:30},visible:{opacity:1,y:0}},whileHover:{scale:1.05}},e.createElement("div",{className:"mx-auto mb-4 flex items-center justify-center w-16 h-16 rounded-full bg-gradient-to-r from-indigo-600 to-pink-600 shadow-lg"},a.icon),e.createElement("h3",{className:"text-lg font-semibold text-white"},a.title),e.createElement("p",{className:"text-slate-300 mt-2 text-sm"},a.desc))))))};export{v as A};
